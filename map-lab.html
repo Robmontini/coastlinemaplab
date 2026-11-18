@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Map Lab — Coastline Map Labs</title>
+<meta name="description" content="Interactive map tools from Coastline Map Labs. Drop a pin on a property and request a soil-suitability report.">
+<meta property="og:title" content="Map Lab — Coastline Map Labs">
+<meta property="og:description" content="Interactive map tools from Coastline Map Labs. Drop a pin on a property and request a soil-suitability report.">
+<meta property="og:image" content="assets/brand/Coastline-Map-Labs-Logo-White-on-Dark.svg">
+<link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=gambetta@400,500&f[]=switzer@400,500,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="style.css">
+<link href="https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css" rel="stylesheet">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Coastline Map Labs home">
+      <img src="assets/brand/Coastline-Map-Labs-Icon-White-Clear.svg" alt="" width="40" height="40">
+      <span>Coastline<small>MAP LABS</small></span>
+    </a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav id="site-nav" class="nav" aria-label="Main"><a href="services.html">Services</a><a href="shop.html">Map Shop</a><a href="map-lab.html" aria-current="page">Map Lab</a><a href="field-kit.html">Field Kit</a><a href="about.html">About</a><a class="nav-cta" href="contact.html">Get a quote</a></nav>
+  </div>
+</header>
+<main id="main">
+
+<section class="page-hero night"><div class="wrap">
+  <p class="eyebrow">Map Lab</p>
+  <h1>Interactive maps you can use right now.</h1>
+  <p class="lede">Start with the parcel pin tool. More tools are added as they’re built.</p>
+</div></section>
+<section class="section"><div class="wrap">
+  <div class="lab reveal">
+    <div class="lab-map"><div id="map" role="region" aria-label="Interactive map. Click to drop a pin."></div><p class="map-status" id="map-status">Loading map…</p></div>
+    <aside class="lab-panel">
+      <div><p class="eyebrow">Tool 01</p><h2>Parcel pin &amp; report request</h2><p class="small muted" style="margin-top:var(--space-2)">Search for a place, then click the exact spot. Drag the pin to adjust it.</p></div>
+      <form id="place-form" class="field" role="search">
+        <label for="place-q">Find a place</label>
+        <div style="display:flex;gap:var(--space-2)"><input id="place-q" type="search" placeholder="Town, road, or ZIP" autocomplete="off"><button class="btn btn-ghost" type="submit">Go</button></div>
+        <span class="hint" id="place-msg" aria-live="polite"></span>
+      </form>
+      <div>
+        <p class="small" style="font-weight:600;margin-bottom:var(--space-2)">Basemap</p>
+        <div class="seg" role="group" aria-label="Basemap">
+          <button type="button" data-style="terrain" aria-pressed="true">Detailed</button>
+          <button type="button" data-style="light" aria-pressed="false">Light</button>
+          <button type="button" data-style="bright" aria-pressed="false">Bright</button>
+        </div>
+      </div>
+      <div class="readout empty" id="readout" aria-live="polite">
+        <span class="eyebrow">Pinned location</span>
+        <span class="val" id="r-lat">Click the map</span>
+        <span class="val" id="r-lng"></span>
+      </div>
+      <div class="btn-row" style="flex-direction:column">
+        <a class="btn btn-primary" id="request-btn" href="contact.html" aria-disabled="true">Request a soil report here</a>
+        <button class="btn btn-ghost" id="copy-btn" type="button" aria-disabled="true">Copy coordinates</button>
+      </div>
+    </aside>
+  </div>
+  <p class="small muted" style="margin-top:var(--space-3)">Basemap © OpenFreeMap, © OpenStreetMap contributors. Place search by OpenStreetMap Nominatim.</p>
+
+  <div class="section-head reveal" style="margin-top:var(--space-20)"><p class="eyebrow">In the lab</p><h2>More tools on the way</h2></div>
+  <div class="tools">
+    <article class="tool reveal"><span class="status live">Live</span><h3>Parcel pin &amp; report request</h3><p>Mark a property and send its coordinates with your request.</p></article>
+    <article class="tool reveal"><span class="status dev">In development</span><h3>Soil suitability explorer</h3><p>See soil ratings for building, septic, and gardening across Del Norte County.</p></article>
+    <article class="tool reveal"><span class="status dev">In development</span><h3>North Coast trails &amp; parks</h3><p>Trailheads, distances, and elevation profiles for redwood and coastal trails.</p></article>
+  </div>
+</div></section>
+
+</main>
+<footer class="site-footer night">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <img src="assets/brand/Coastline-Map-Labs-Logo-White-Clear.svg" alt="Coastline Map Labs" width="352" height="132" loading="lazy">
+        <p style="margin-top:var(--space-4)">Custom maps, land analysis, and GIS learning from Crescent City, California.</p>
+      </div>
+      <div>
+        <h2>Explore</h2>
+        <ul><li><a href="services.html">Services</a></li><li><a href="shop.html">Map Shop</a></li><li><a href="map-lab.html">Map Lab</a></li><li><a href="field-kit.html">Field Kit</a></li></ul>
+      </div>
+      <div>
+        <h2>Studio</h2>
+        <ul><li><a href="about.html">About Rob</a></li><li><a href="contact.html">Contact &amp; quotes</a></li><li><a data-email href="contact.html">Email</a></li></ul>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <p>Affiliate disclosure: some links on this site are affiliate links. If you buy through them, Coastline Map Labs may earn a small commission at no extra cost to you.</p>
+      <p>Maps and reports are for planning and education. They are not a substitute for a licensed survey, on-site soil test, or professional engineering advice.</p>
+      <p>© 2026 Coastline Map Labs · coastlinemaplab.com</p>
+    </div>
+  </div>
+</footer>
+<script src="config.js"></script>
+<script src="app.js" defer></script>
+<script src="https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js"></script>
+<script src="maplab.js"></script>
+</body>
+</html>
