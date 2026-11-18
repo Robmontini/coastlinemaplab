@@ -53,7 +53,7 @@ def page(fname, title, desc, body, extra_head='', extra_js=''):
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <img src="assets/brand/Coastline-Map-Labs-Logo-White-Clear.svg" alt="Coastline Map Labs" width="352" height="132" loading="lazy">
+        <img src="assets/brand/Coastline-Map-Labs-Logo-White-Clear.svg" alt="Coastline Map Labs" width="352" height="132">
         <p style="margin-top:var(--space-4)">Custom maps, land analysis, and GIS learning from Crescent City, California.</p>
       </div>
       <div>
@@ -163,7 +163,7 @@ f'''
       <p>I’m a GIS and cartography student in Crescent City, California. I build maps in QGIS and ArcGIS Pro: soil and land analysis, trail and park maps, 3D terrain, and StoryMaps. I also teach beginners through GIS Made Simple, so every report I send comes with plain-English explanations.</p>
       <p style="margin-top:var(--space-6)"><a href="about.html">More about me and my work →</a></p>
     </div>
-    <div class="figure reveal" style="aspect-ratio:1"><img src="assets/img/art-about.svg" alt="" loading="lazy" width="800" height="600"></div>
+    <div class="figure figure--night reveal" style="aspect-ratio:1"><img src="assets/brand/Coastline-Map-Labs-Icon-White-Clear.svg" alt="Coastline Map Labs compass rose" loading="lazy" width="280" height="280"></div>
   </div>
 </section>
 
@@ -298,8 +298,8 @@ page('map-lab.html', 'Map Lab — Coastline Map Labs',
   </div>
 </div></section>
 ''',
-extra_head='<link href="https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css" rel="stylesheet">',
-extra_js='<script src="https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js"></script>\n<script src="maplab.js"></script>')
+extra_head='<link href="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.css" rel="stylesheet">',
+extra_js='<script src="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.js"></script>\n<script src="maplab.js"></script>')
 
 # ------------------------------------------------------------------ FIELD KIT
 def kit(aff, tag, name, why, cta='See it'):
