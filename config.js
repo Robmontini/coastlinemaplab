@@ -19,7 +19,7 @@ window.CML_CONFIG = {
     "soil-custom": "",
     "custom-map": "",
     "web-map": "",
-    "tutoring": "",
+    "tutoring": "https://stan.store/rm2332/p/qgis-oneonone-with-rob-montini",
     "trail-map-pdf": "",
     "qgis-style-pack": "",
     "qgis-course": "",
