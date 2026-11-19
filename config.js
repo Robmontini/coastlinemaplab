@@ -15,7 +15,7 @@ window.CML_CONFIG = {
   // Stripe Payment Links (or Gumroad / Etsy / Fiverr links) for each item
   buy: {
     "soil-snapshot": "",
-    "soil-buyer-report": "",
+    "soil-buyer-report": "https://stan.store/rm2332/p/land-buyer-report-",
     "soil-custom": "",
     "custom-map": "",
     "web-map": "",

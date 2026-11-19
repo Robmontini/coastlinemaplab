@@ -198,7 +198,7 @@ f'''
     <p class="lede">Find out which parts of a property suit building, gardening, septic, or grazing. Reports use USDA NRCS soil survey data (SSURGO).</p>
     <div class="tiers">
       {tier('soil-snapshot','Parcel Snapshot','$45','per parcel',['One-page soil map of your parcel','Soil types and acreage breakdown','Delivered as PDF in 3 days'])}
-      {tier('soil-buyer-report','Land Buyer Report','$125','per parcel',['Everything in Snapshot','Suitability ratings for building, septic, and gardening','Slope and drainage maps','5–8 page PDF + map image files'],featured=True,badge='Most popular')}
+      {tier('soil-buyer-report','Land Buyer Report','$150','per parcel',['Everything in Snapshot','Suitability ratings for building, septic, and gardening','Slope and drainage maps','5–8 page PDF + map image files'],featured=True,badge='Most popular')}
       {tier('soil-custom','Custom Land Analysis','From $250','per project',['Multiple parcels or a whole property search','Your own criteria (farming, livestock, homestead)','Interactive web map you can share','Video walkthrough of the results'],cta='Request a quote')}
     </div>
   </div>
@@ -386,7 +386,7 @@ page('contact.html', 'Contact & free quotes — Coastline Map Labs',
       <select id="f-service" name="service">
         <optgroup label="Soil reports">
           <option value="soil-snapshot">Parcel Snapshot ($45)</option>
-          <option value="soil-buyer-report">Land Buyer Report ($125)</option>
+          <option value="soil-buyer-report">Land Buyer Report ($150)</option>
           <option value="soil-custom">Custom Land Analysis (from $250)</option>
         </optgroup>
         <optgroup label="Maps">
