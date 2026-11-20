@@ -12,3 +12,8 @@ To swap a photo, replace the file in `assets/img/` and keep the same name.
 
 ## Hosting
 Static site. It works on GitHub Pages, Netlify, or Cloudflare Pages. Point coastlinemaplab.com at the host.
+
+## Add a map to the Map Gallery
+1. Save two images in `assets/gallery/`: `name.webp` (large) and `name-thumb.webp` (about 1100 px wide).
+2. Add an entry to the `GALLERY` list in `build.py`.
+3. Run `python3 build.py`.

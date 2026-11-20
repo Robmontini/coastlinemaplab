@@ -9,7 +9,7 @@ def img(name, fallback):  # use a photo if present, else contour art
         if has(f'assets/img/{name}.{ext}'): return f'assets/img/{name}.{ext}', True
     return f'assets/img/{fallback}', False
 
-NAV = [('services.html', 'Services'), ('shop.html', 'Map Shop'), ('map-lab.html', 'Map Lab'),
+NAV = [('services.html', 'Services'), ('gallery.html', 'Map Gallery'), ('shop.html', 'Map Shop'), ('map-lab.html', 'Map Lab'),
        ('field-kit.html', 'Field Kit'), ('about.html', 'About')]
 
 def page(fname, title, desc, body, extra_head='', extra_js=''):
@@ -58,7 +58,7 @@ def page(fname, title, desc, body, extra_head='', extra_js=''):
       </div>
       <div>
         <h2>Explore</h2>
-        <ul><li><a href="services.html">Services</a></li><li><a href="shop.html">Map Shop</a></li><li><a href="map-lab.html">Map Lab</a></li><li><a href="field-kit.html">Field Kit</a></li></ul>
+        <ul><li><a href="services.html">Services</a></li><li><a href="gallery.html">Map Gallery</a></li><li><a href="shop.html">Map Shop</a></li><li><a href="map-lab.html">Map Lab</a></li><li><a href="field-kit.html">Field Kit</a></li></ul>
       </div>
       <div>
         <h2>Studio</h2>
@@ -225,9 +225,9 @@ f'''
 ''')
 
 # ------------------------------------------------------------------ SHOP
-def product(id_, kind, name, desc, price, art):
+def product(id_, kind, name, desc, price, art, cta='Buy'):
     src, _ = art
-    return f'''<article class="product reveal"><div class="thumb" style="background-image:url({src})"><span class="kind">{kind}</span></div><div class="body"><h3>{name}</h3><p>{desc}</p><div class="row"><span class="price">{price}</span><a class="btn btn-primary" data-buy="{id_}" href="contact.html?item={id_}">Buy</a></div></div></article>'''
+    return f'''<article class="product reveal"><div class="thumb" style="background-image:url({src})"><span class="kind">{kind}</span></div><div class="body"><h3>{name}</h3><p>{desc}</p><div class="row"><span class="price">{price}</span><a class="btn btn-primary" data-buy="{id_}" href="contact.html?item={id_}">{cta}</a></div></div></article>'''
 
 page('shop.html', 'Map Shop — Coastline Map Labs',
      'Printable trail maps, framed map prints, QGIS style templates, and beginner QGIS courses.',
@@ -239,7 +239,7 @@ f'''
 </div></section>
 <section class="section"><div class="wrap">
   <div class="products">
-    {product('trail-map-pdf','Digital download','North Coast Trail Map (PDF)','A printable, pocket-size trail map with contours, trailheads, and mileage. Print at home or at a copy shop.','$12',img('trail-print','art-trail.svg'))}
+    {product('custom-trail-map','Custom map','Pick-Your-Trail Map','Name any trail and I’ll map it in the same style as my Stout Grove map, with trailheads, the route, nearby trails, and a print-ready PDF. <a href="gallery.html">See the sample →</a>','Custom quote',('assets/gallery/stout-grove-thumb.webp',True),cta='Pick your trail')}
     {product('wall-print','Print','Coastline Contour Wall Print','A line-art topographic print of the Del Norte coast on heavyweight matte paper. 12×16 in.','$35',img('wall-print','art-print.svg'))}
     {product('qgis-style-pack','Template','QGIS Cartography Style Pack','Ready-made QGIS styles and print layouts for clean, vintage-style maps. Drop in your data and export.','$19',img('qgis-pack','art-template.svg'))}
     {product('qgis-course','Course','QGIS From Zero','A beginner video course from GIS Made Simple: install QGIS, load data, style layers, and export your first map.','$49',img('course','art-course.svg'))}
@@ -248,6 +248,84 @@ f'''
 <section class="section--tight" style="padding-top:0"><div class="wrap">
   <div class="band reveal"><div><h2>Want a map of your own place?</h2><p class="muted" style="margin-top:var(--space-2)">Custom prints of your trail, ranch, town, or favorite coastline start at $75.</p></div><a class="btn btn-primary" href="contact.html?item=custom-map">Request a custom map</a></div>
 </div></section>
+''')
+
+
+# ------------------------------------------------------------------ MAP GALLERY
+# To add a map: put a big image (name.webp) and a ~1100px image (name-thumb.webp)
+# in assets/gallery/, add one entry to GALLERY below, then run  python3 build.py
+GALLERY = [
+    dict(slug='stout-grove', type='Trail & park maps',
+         title='Stout Grove Trail', place='Jedediah Smith Redwoods State Park, California',
+         desc='A custom trail map of the Stout Memorial Grove loop, with trailheads, the seasonal bridge, the nearby River, Hiouchi, and Little Bald Hills trails, roads, creeks, and a scale bar over aerial imagery.',
+         made='QGIS, USGS imagery, and OpenStreetMap data', item='custom-trail-map', cta='I want a map like this'),
+]
+MAP_TYPES = [
+    ('Trail & park maps', 'Any trail you love, with trailheads, loops, and nearby routes. Print-ready.', 'custom-trail-map'),
+    ('Soil & land suitability', 'Which parts of a property suit building, septic, or gardening.', 'soil-buyer-report'),
+    ('3D terrain maps', 'Shaded relief and 3D views that show the shape of the land.', 'custom-map'),
+    ('Interactive web maps', 'Clickable maps for your website, like the one in the Map Lab.', 'web-map'),
+    ('StoryMaps', 'Maps, photos, and text that walk readers through a place or project.', 'custom-map'),
+]
+
+def gallery_card(g, featured=False):
+    cap = f"{g['title']} · {g['place']}"
+    return f'''<article class="gcard{' gcard--featured' if featured else ''} reveal">
+  <button class="gimg" type="button" data-zoom="assets/gallery/{g['slug']}.webp" data-caption="{cap}" aria-label="View the {g['title']} map full size">
+    <img src="assets/gallery/{g['slug']}-thumb.webp" alt="{g['title']} map, {g['place']}" loading="lazy" width="1100" height="850">
+    <span class="zoom-hint">View full size</span>
+  </button>
+  <div class="gbody">
+    <p class="eyebrow">{g['type']}</p>
+    <h2 class="gtitle">{g['title']}</h2>
+    <p class="gplace">{g['place']}</p>
+    <p>{g['desc']}</p>
+    <p class="small muted">Made with {g['made']}.</p>
+    <div class="btn-row"><a class="btn btn-primary" href="contact.html?item={g['item']}">{g['cta']}</a><button class="btn btn-ghost" type="button" data-zoom="assets/gallery/{g['slug']}.webp" data-caption="{cap}">View full size</button></div>
+  </div>
+</article>'''
+
+_have = {g['type'] for g in GALLERY}
+def _type_card(t, d, i):
+    live = t in _have
+    status = '<span class="status live">Sample above</span>' if live else '<span class="status dev">Samples coming soon</span>'
+    return f'<article class="tool reveal">{status}<h3>{t}</h3><p>{d}</p><a class="small" href="contact.html?item={i}">Ask about this &rarr;</a></article>'
+types_html = ''.join(_type_card(*m) for m in MAP_TYPES)
+cards = ''.join(gallery_card(g, i == 0 and len(GALLERY) % 2 == 1) for i, g in enumerate(GALLERY))
+
+page('gallery.html', 'Map Gallery — Coastline Map Labs',
+     'Sample maps by Rob Montini: custom trail maps, soil and land maps, 3D terrain, and web maps. Find a style you like and order one of your own.',
+f'''
+<section class="page-hero night"><div class="wrap">
+  <p class="eyebrow">Map Gallery</p>
+  <h1>See the kinds of maps I make.</h1>
+  <p class="lede">Find a style you like, then tell me your place. I’ll make one just for you.</p>
+</div></section>
+<section class="section"><div class="wrap">
+  <div class="gallery">{cards}</div>
+</div></section>
+<section class="section night"><div class="wrap split">
+  <div class="reveal">
+    <p class="eyebrow">Pick your trail</p>
+    <h2 style="margin-block:var(--space-3) var(--space-4)">Name a trail. I’ll map it.</h2>
+    <p class="lede">Your favorite hike, a park you manage, or a trail for your guests. You get a map in the same style as Stout Grove.</p>
+    <div class="btn-row" style="margin-top:var(--space-8)"><a class="btn btn-primary" href="contact.html?item=custom-trail-map">Pick your trail</a></div>
+  </div>
+  <ol class="steps reveal" style="color:var(--color-night-text)">
+    <li><div><strong>Tell me the trail</strong><span style="color:var(--color-night-muted)">A name, a park, or a link to the trailhead.</span></div></li>
+    <li><div><strong>I design the map</strong><span style="color:var(--color-night-muted)">Trailheads, the route, nearby trails, roads, and water.</span></div></li>
+    <li><div><strong>You get the files</strong><span style="color:var(--color-night-muted)">A print-ready PDF and an image for phones and social posts.</span></div></li>
+  </ol>
+</div></section>
+<section class="section"><div class="wrap">
+  <div class="section-head reveal"><p class="eyebrow">Map types</p><h2>What I can make for you</h2></div>
+  <div class="tools tools--five">{types_html}</div>
+</div></section>
+<dialog id="lightbox" class="lightbox" aria-label="Full-size map">
+  <form method="dialog"><button class="lb-close" aria-label="Close">&times;</button></form>
+  <img alt="" id="lb-img">
+  <p id="lb-cap"></p>
+</dialog>
 ''')
 
 # ------------------------------------------------------------------ MAP LAB
@@ -390,6 +468,7 @@ page('contact.html', 'Contact & free quotes — Coastline Map Labs',
           <option value="soil-custom">Custom Land Analysis (from $250)</option>
         </optgroup>
         <optgroup label="Maps">
+          <option value="custom-trail-map">Custom trail map (pick your trail)</option>
           <option value="custom-map">Custom cartography (from $75)</option>
           <option value="web-map">Interactive web map (from $300)</option>
         </optgroup>
@@ -399,7 +478,6 @@ page('contact.html', 'Contact & free quotes — Coastline Map Labs',
           <option value="qgis-style-pack">QGIS Cartography Style Pack ($19)</option>
         </optgroup>
         <optgroup label="Shop">
-          <option value="trail-map-pdf">North Coast Trail Map PDF ($12)</option>
           <option value="wall-print">Coastline Contour Wall Print ($35)</option>
         </optgroup>
         <option value="other">Something else</option>

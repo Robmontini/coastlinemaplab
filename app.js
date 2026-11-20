@@ -46,6 +46,25 @@
     els.forEach(function (el) { io.observe(el); });
   } else { els.forEach(function (el) { el.classList.add('in'); }); }
 
+  // Map Gallery full-size viewer
+  var lb = document.getElementById('lightbox');
+  if (lb && lb.showModal) {
+    var lbImg = document.getElementById('lb-img'), lbCap = document.getElementById('lb-cap');
+    document.querySelectorAll('[data-zoom]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        lbImg.src = b.getAttribute('data-zoom');
+        lbImg.alt = b.getAttribute('data-caption') || '';
+        lbCap.textContent = b.getAttribute('data-caption') || '';
+        lb.showModal();
+      });
+    });
+    lb.addEventListener('click', function (e) { if (e.target === lb) lb.close(); });
+  } else {
+    document.querySelectorAll('[data-zoom]').forEach(function (b) {
+      b.addEventListener('click', function () { window.open(b.getAttribute('data-zoom'), '_blank'); });
+    });
+  }
+
   // Contact form
   var form = document.getElementById('contact-form');
   if (form) {

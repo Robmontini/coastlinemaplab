@@ -17,6 +17,7 @@ window.CML_CONFIG = {
     "soil-snapshot": "",
     "soil-buyer-report": "https://stan.store/rm2332/p/land-buyer-report-",
     "soil-custom": "",
+    "custom-trail-map": "",
     "custom-map": "",
     "web-map": "",
     "tutoring": "https://stan.store/rm2332/p/qgis-oneonone-with-rob-montini",
