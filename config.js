@@ -20,6 +20,7 @@ window.CML_CONFIG = {
     "custom-trail-map": "",
     "custom-map": "",
     "web-map": "",
+    "thematic-map": "",
     "tutoring": "https://stan.store/rm2332/p/qgis-oneonone-with-rob-montini",
     "trail-map-pdf": "",
     "qgis-style-pack": "",

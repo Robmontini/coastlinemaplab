@@ -260,10 +260,75 @@ GALLERY = [
          desc='A custom trail map of the Stout Memorial Grove loop, with trailheads, the seasonal bridge, the nearby River, Hiouchi, and Little Bald Hills trails, roads, creeks, and a scale bar over aerial imagery.',
          made='QGIS, USGS imagery, and OpenStreetMap data', item='custom-trail-map', cta='I want a map like this'),
 ]
+
+# group: 'custom' = custom map creation, 'thematic' = data/thematic maps, 'show' = samples of my work
+# w/h = size of the -thumb.webp image
+MORE_MAPS = [
+    dict(group='custom', slug='nez-perce-1877', good='History classes, museums, authors, and family-history projects.', type='Historical route map', w=850, h=1100,
+         title='The 1877 Flight of the Nez Perce', place='Oregon, Idaho, and Montana Territory',
+         desc='A historical route map of the Nez Perce (Nimiipuu) and Chief Joseph, from the Wallowa Valley toward Canada. It marks battle sites with dates and pairs the map with a written account.',
+         made='ESRI, Natural Earth, and Kenneth Townsend sources'),
+    dict(group='custom', slug='mexico-zacatecas', good='Family roots, travel stories, gifts, and hometown wall art.', type='Reference map with inset', w=1100, h=850,
+         title='Mexico and Zacatecas', place='Mexico and the U.S. Gulf Coast',
+         desc='A grid-referenced map of Mexico that highlights the state of Zacatecas over imagery, with major cities, an Old World style, and an aerial inset of the town of San Jose.',
+         made='ESRI, NHGIS, and USGS Earth Explorer data'),
+    dict(group='custom', slug='mount-rainier-3d', good='Climbers, hikers, cabins, and outdoor gifts.', type='3D terrain maps', w=850, h=1100,
+         title='Mount Rainier in 3D', place='Mount Rainier, Washington',
+         desc='A 3D terrain view of Mount Rainier, with elevation colors that run from green valleys to a red and gray summit.',
+         made=''),
+    dict(group='thematic', slug='florida-dengue', good='Public health reports, research posters, and grant proposals.', type='Thematic maps', w=736, h=520,
+         title='Dengue Fever Cases and Mosquito Counts', place='Florida, by county',
+         desc='A two-variable map: county colors show reported dengue fever cases, and circles show mosquito counts. A locator globe shows where Florida sits.',
+         made=''),
+    dict(group='thematic', slug='east-africa-refugees', good='Nonprofits, reports, classrooms, and presentations.', type='Thematic maps', w=850, h=1100,
+         title='Central and East African Refugee Populations', place='Central and East Africa, 2023',
+         desc='Graduated circles compare refugees by country of asylum, and shaded countries show refugees by country of origin, over shaded relief.',
+         made='ESRI, World Bank Group, and Shaded Relief Archive data'),
+    dict(group='thematic', slug='california-poverty', good='Community groups, local government, and school projects.', type='Thematic maps', w=940, h=1100,
+         title='California Poverty Level, 2016 to 2020', place='California, by local government',
+         desc='A choropleth map of poverty by local government area across California, in six classes from light to dark red.',
+         made=''),
+    dict(group='show', slug='smith-river-elevation', good='Watershed groups, anglers, lodges, and wall prints.', type='3D terrain maps', w=1100, h=850,
+         title='Smith River: From Mountain to Sea', place='Smith River Watershed, Del Norte County, California',
+         desc='Shaded relief of the 797 square mile Smith River watershed, from the river mouth at sea level to Bear Mountain at 6,402 feet.',
+         made='USGS 3DEP elevation, the USGS Watershed Boundary Dataset, and OpenStreetMap rivers'),
+    dict(group='show', slug='beachfront-park', good='Parks departments, events, rentals, and visitor guides.', type='Trail & park maps', w=1100, h=850,
+         title='Beachfront Park', place='Crescent City, California',
+         desc='A park locator map that highlights Beachfront Park on the Crescent City waterfront, with the other city parks and streets over aerial imagery.',
+         made='USGS National Map imagery and OpenStreetMap data'),
+    dict(group='show', slug='elk-valley-property', good='Land buyers, sellers, realtors, and rental listings.', type='Property maps', w=1100, h=840,
+         title='Property Snapshot: Elk Valley Cross Road', place='Crescent City, California',
+         desc='A one-page property map: a 3.88 acre parcel on aerial imagery, plus a locator map with straight-line distances to the hospital, schools, the airport, downtown, and the redwoods.',
+         made='Del Norte County parcels, USGS imagery, and OpenStreetMap data'),
+]
+GROUPS = [
+    dict(key='custom', title='Custom maps', intro='Made to order around a place, a story, or a request.',
+         item='custom-map', cta='Order one like this', price='Custom maps from $75',
+         pitch_eyebrow='Pick your place', pitch_h='Tell me the story. I’ll map it.',
+         pitch='A family hometown, a historic route, a mountain you climbed. You get a map designed around it, ready to print or share.',
+         steps=[('Tell me the place or story', 'A town, a route, a mountain, or a few notes and photos.'),
+                ('I design the map', 'Labels, imagery, insets, and a style that fits.'),
+                ('You get the files', 'A print-ready PDF and an image for phones and social posts.')]),
+    dict(key='thematic', title='Thematic maps', intro='Data turned into a clear picture: counts, rates, and patterns across a region.',
+         item='thematic-map', cta='Order one like this', price='Custom quote',
+         pitch_eyebrow='Map your data', pitch_h='Send me a spreadsheet. I’ll make it a map.',
+         pitch='Cases by county, people by country, income by city. A thematic map shows the pattern at a glance for reports, grants, and presentations.',
+         steps=[('Send your data', 'A spreadsheet or a link to public data, plus the area you care about.'),
+                ('I map the pattern', 'Clean classes, clear colors, and a legend anyone can read.'),
+                ('You get the files', 'A print-ready PDF and a high-resolution image for slides and reports.')]),
+    dict(key='show', title='More of my work', intro='Terrain, park, and property maps from around Del Norte County.',
+         item='custom-map', cta='I want a map like this', price='From $75',
+         pitch_eyebrow='Your land, your town', pitch_h='Want one for your place?',
+         pitch='A watershed, a park, or a property you’re buying or selling. Name the spot and I’ll make a map in the same style.',
+         steps=[('Name the spot', 'An address, a parcel number, a park, or a river.'),
+                ('I design the map', 'Terrain, imagery, distances, and the details that matter to you.'),
+                ('You get the files', 'A print-ready PDF and an image for listings and social posts.')]),
+]
 MAP_TYPES = [
     ('Trail & park maps', 'Any trail you love, with trailheads, loops, and nearby routes. Print-ready.', 'custom-trail-map'),
     ('Soil & land suitability', 'Which parts of a property suit building, septic, or gardening.', 'soil-buyer-report'),
     ('3D terrain maps', 'Shaded relief and 3D views that show the shape of the land.', 'custom-map'),
+    ('Thematic maps', 'Your data on a map: cases, counts, rates, and trends by area.', 'thematic-map'),
     ('Interactive web maps', 'Clickable maps for your website, like the one in the Map Lab.', 'web-map'),
     ('StoryMaps', 'Maps, photos, and text that walk readers through a place or project.', 'custom-map'),
 ]
@@ -272,7 +337,7 @@ def gallery_card(g, featured=False):
     cap = f"{g['title']} · {g['place']}"
     return f'''<article class="gcard{' gcard--featured' if featured else ''} reveal">
   <button class="gimg" type="button" data-zoom="assets/gallery/{g['slug']}.webp" data-caption="{cap}" aria-label="View the {g['title']} map full size">
-    <img src="assets/gallery/{g['slug']}-thumb.webp" alt="{g['title']} map, {g['place']}" loading="lazy" width="1100" height="850">
+    <img src="assets/gallery/{g['slug']}-thumb.webp" alt="{g['title']} map, {g['place']}" loading="lazy" width="{g.get('w', 1100)}" height="{g.get('h', 850)}">
     <span class="zoom-hint">View full size</span>
   </button>
   <div class="gbody">
@@ -280,18 +345,41 @@ def gallery_card(g, featured=False):
     <h2 class="gtitle">{g['title']}</h2>
     <p class="gplace">{g['place']}</p>
     <p>{g['desc']}</p>
-    <p class="small muted">Made with {g['made']}.</p>
+    {f'<p class="gfor"><strong>Great for:</strong> {g["good"]}</p>' if g.get('good') else ''}
+    {f'<p class="small muted">Made with {g["made"]}.</p>' if g.get('made') else ''}
+    {f'<p class="gprice">{g["price"]}</p>' if g.get('price') else ''}
     <div class="btn-row"><a class="btn btn-primary" href="contact.html?item={g['item']}">{g['cta']}</a><button class="btn btn-ghost" type="button" data-zoom="assets/gallery/{g['slug']}.webp" data-caption="{cap}">View full size</button></div>
   </div>
 </article>'''
 
-_have = {g['type'] for g in GALLERY}
+_have = {g['type'] for g in GALLERY + MORE_MAPS}
 def _type_card(t, d, i):
     live = t in _have
-    status = '<span class="status live">Sample above</span>' if live else '<span class="status dev">Samples coming soon</span>'
+    status = '<span class="status live">Samples above</span>' if live else '<span class="status dev">Samples coming soon</span>'
     return f'<article class="tool reveal">{status}<h3>{t}</h3><p>{d}</p><a class="small" href="contact.html?item={i}">Ask about this &rarr;</a></article>'
 types_html = ''.join(_type_card(*m) for m in MAP_TYPES)
 cards = ''.join(gallery_card(g, i == 0 and len(GALLERY) % 2 == 1) for i, g in enumerate(GALLERY))
+def _group_section(G):
+    maps = [dict(m, item=G['item'], cta=G['cta'], price=G['price']) for m in MORE_MAPS if m['group'] == G['key']]
+    if not maps: return ''
+    steps = ''.join(f'<li><div><strong>{t}</strong><span style="color:var(--color-night-muted)">{d}</span></div></li>' for t, d in G['steps'])
+    return f'''<section class="section gsection" id="{G['key']}"><div class="wrap">
+  <div class="section-head reveal"><p class="eyebrow">{G['title']}</p><h2>{G['intro']}</h2></div>
+  <div class="gallery gallery--three">{''.join(gallery_card(m) for m in maps)}</div>
+</div></section>
+<section class="section night"><div class="wrap split">
+  <div class="reveal">
+    <p class="eyebrow">{G['pitch_eyebrow']}</p>
+    <h2 style="margin-block:var(--space-3) var(--space-4)">{G['pitch_h']}</h2>
+    <p class="lede">{G['pitch']}</p>
+    <p class="gprice gprice--night">{G['price']}</p>
+    <div class="btn-row" style="margin-top:var(--space-6)"><a class="btn btn-primary" href="contact.html?item={G['item']}">{G['cta'].replace(' one like this', ' yours').replace('I want a map like this', 'Get a map of your place')}</a></div>
+  </div>
+  <ol class="steps reveal" style="color:var(--color-night-text)">{steps}</ol>
+</div></section>
+'''
+group_html = ''.join(_group_section(g) for g in GROUPS)
+jump_html = ' · '.join(f'<a href="#{g["key"]}">{g["title"]}</a>' for g in GROUPS)
 
 page('gallery.html', 'Map Gallery — Coastline Map Labs',
      'Sample maps by Rob Montini: custom trail maps, soil and land maps, 3D terrain, and web maps. Find a style you like and order one of your own.',
@@ -300,6 +388,7 @@ f'''
   <p class="eyebrow">Map Gallery</p>
   <h1>See the kinds of maps I make.</h1>
   <p class="lede">Find a style you like, then tell me your place. I’ll make one just for you.</p>
+  <p class="gjump">Jump to: {jump_html}</p>
 </div></section>
 <section class="section"><div class="wrap">
   <div class="gallery">{cards}</div>
@@ -317,7 +406,7 @@ f'''
     <li><div><strong>You get the files</strong><span style="color:var(--color-night-muted)">A print-ready PDF and an image for phones and social posts.</span></div></li>
   </ol>
 </div></section>
-<section class="section"><div class="wrap">
+{group_html}<section class="section"><div class="wrap">
   <div class="section-head reveal"><p class="eyebrow">Map types</p><h2>What I can make for you</h2></div>
   <div class="tools tools--five">{types_html}</div>
 </div></section>
@@ -470,6 +559,7 @@ page('contact.html', 'Contact & free quotes — Coastline Map Labs',
         <optgroup label="Maps">
           <option value="custom-trail-map">Custom trail map (pick your trail)</option>
           <option value="custom-map">Custom cartography (from $75)</option>
+          <option value="thematic-map">Thematic / data map (custom quote)</option>
           <option value="web-map">Interactive web map (from $300)</option>
         </optgroup>
         <optgroup label="Learning">
