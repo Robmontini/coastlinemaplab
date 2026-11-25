@@ -290,7 +290,7 @@ MORE_MAPS = [
          made=''),
     dict(group='show', slug='smith-river-elevation', good='Watershed groups, anglers, lodges, and wall prints.', type='3D terrain maps', w=1100, h=850,
          title='Smith River: From Mountain to Sea', place='Smith River Watershed, Del Norte County, California',
-         desc='Shaded relief of the 797 square mile Smith River watershed, from the river mouth at sea level to Bear Mountain at 6,402 feet.',
+         desc='Shaded relief of the 797 square mile Smith River watershed, with the river and its forks traced from Bear Mountain at 6,402 feet to the river mouth at sea level.',
          made='USGS 3DEP elevation, the USGS Watershed Boundary Dataset, and OpenStreetMap rivers'),
     dict(group='show', slug='beachfront-park', good='Parks departments, events, rentals, and visitor guides.', type='Trail & park maps', w=1100, h=850,
          title='Beachfront Park', place='Crescent City, California',
