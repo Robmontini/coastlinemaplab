@@ -240,8 +240,8 @@ f'''
 <section class="section"><div class="wrap">
   <div class="products">
     {product('custom-trail-map','Custom map','Pick-Your-Trail Map','Name any trail and I’ll map it in the same style as my Stout Grove map, with trailheads, the route, nearby trails, and a print-ready PDF. <a href="gallery.html">See the sample →</a>','Custom quote',('assets/gallery/stout-grove-thumb.webp',True),cta='Pick your trail')}
-    {product('wall-print','Print','Coastline Contour Wall Print','A line-art topographic print of the Del Norte coast on heavyweight matte paper. 12×16 in.','$35',img('wall-print','art-print.svg'))}
-    {product('qgis-style-pack','Template','QGIS Cartography Style Pack','Ready-made QGIS styles and print layouts for clean, vintage-style maps. Drop in your data and export.','$19',img('qgis-pack','art-template.svg'))}
+    {product('wall-print','Print','Coastline Contour Wall Print','A line-art topographic print of the Del Norte coast on heavyweight matte paper. 12×16 in.','From $35',img('wall-print','art-print.svg'))}
+    {product('qgis-style-pack','Template','QGIS Cartography Style Pack','Ready-made QGIS styles and print layouts for clean, vintage-style maps. Drop in your data and export.','From $35',img('qgis-pack','art-template.svg'))}
     {product('qgis-course','Course','QGIS From Zero','A beginner video course from GIS Made Simple: install QGIS, load data, style layers, and export your first map.','$49',img('course','art-course.svg'))}
   </div>
 </div></section>
@@ -299,7 +299,8 @@ MORE_MAPS = [
     dict(group='show', slug='elk-valley-property', good='Land buyers, sellers, realtors, and rental listings.', type='Property maps', w=1100, h=840,
          title='Property Snapshot: Elk Valley Cross Road', place='Crescent City, California',
          desc='A one-page property map: a 3.88 acre parcel on aerial imagery, plus a locator map with straight-line distances to the hospital, schools, the airport, downtown, and the redwoods.',
-         made='Del Norte County parcels, USGS imagery, and OpenStreetMap data'),
+         made='Del Norte County parcels, USGS imagery, and OpenStreetMap data',
+         item='soil-buyer-report', buy=True, cta='Order a Land Buyer Report', price='Land Buyer Report: $150'),
 ]
 GROUPS = [
     dict(key='custom', title='Custom maps', intro='Made to order around a place, a story, or a request.',
@@ -348,7 +349,7 @@ def gallery_card(g, featured=False):
     {f'<p class="gfor"><strong>Great for:</strong> {g["good"]}</p>' if g.get('good') else ''}
     {f'<p class="small muted">Made with {g["made"]}.</p>' if g.get('made') else ''}
     {f'<p class="gprice">{g["price"]}</p>' if g.get('price') else ''}
-    <div class="btn-row"><a class="btn btn-primary" href="contact.html?item={g['item']}">{g['cta']}</a><button class="btn btn-ghost" type="button" data-zoom="assets/gallery/{g['slug']}.webp" data-caption="{cap}">View full size</button></div>
+    <div class="btn-row"><a class="btn btn-primary"{' data-buy="' + g['item'] + '"' if g.get('buy') else ''} href="contact.html?item={g['item']}">{g['cta']}</a><button class="btn btn-ghost" type="button" data-zoom="assets/gallery/{g['slug']}.webp" data-caption="{cap}">View full size</button></div>
   </div>
 </article>'''
 
@@ -360,7 +361,7 @@ def _type_card(t, d, i):
 types_html = ''.join(_type_card(*m) for m in MAP_TYPES)
 cards = ''.join(gallery_card(g, i == 0 and len(GALLERY) % 2 == 1) for i, g in enumerate(GALLERY))
 def _group_section(G):
-    maps = [dict(m, item=G['item'], cta=G['cta'], price=G['price']) for m in MORE_MAPS if m['group'] == G['key']]
+    maps = [dict(dict(item=G['item'], cta=G['cta'], price=G['price']), **m) for m in MORE_MAPS if m['group'] == G['key']]
     if not maps: return ''
     steps = ''.join(f'<li><div><strong>{t}</strong><span style="color:var(--color-night-muted)">{d}</span></div></li>' for t, d in G['steps'])
     return f'''<section class="section gsection" id="{G['key']}"><div class="wrap">
@@ -565,10 +566,10 @@ page('contact.html', 'Contact & free quotes — Coastline Map Labs',
         <optgroup label="Learning">
           <option value="tutoring">QGIS tutoring ($35/hr)</option>
           <option value="qgis-course">QGIS From Zero course ($49)</option>
-          <option value="qgis-style-pack">QGIS Cartography Style Pack ($19)</option>
+          <option value="qgis-style-pack">QGIS Cartography Style Pack (from $35)</option>
         </optgroup>
         <optgroup label="Shop">
-          <option value="wall-print">Coastline Contour Wall Print ($35)</option>
+          <option value="wall-print">Coastline Contour Wall Print (from $35)</option>
         </optgroup>
         <option value="other">Something else</option>
       </select>
