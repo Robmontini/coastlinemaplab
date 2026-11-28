@@ -17,3 +17,9 @@ Static site. It works on GitHub Pages, Netlify, or Cloudflare Pages. Point coast
 1. Save two images in `assets/gallery/`: `name.webp` (large) and `name-thumb.webp` (about 1100 px wide).
 2. Add an entry to the `GALLERY` list in `build.py`.
 3. Run `python3 build.py`.
+
+## Trail Gear page (Amazon)
+`trail-gear.html` buttons use the `amz-...` keys in `config.js`. They open plain Amazon searches until you're approved. After approval, paste each product's SiteStripe link (with your `?tag=...-20`) into `config.js`. Don't type prices on the page; Amazon doesn't allow that.
+
+## Free story map page
+`before-you-buy.html` promotes the free "Read the Ground First" story map. Pictures are in `assets/storymap/`.

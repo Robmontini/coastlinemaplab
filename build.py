@@ -10,7 +10,7 @@ def img(name, fallback):  # use a photo if present, else contour art
     return f'assets/img/{fallback}', False
 
 NAV = [('services.html', 'Services'), ('gallery.html', 'Map Gallery'), ('shop.html', 'Map Shop'), ('map-lab.html', 'Map Lab'),
-       ('field-kit.html', 'Field Kit'), ('about.html', 'About')]
+       ('before-you-buy.html', 'Free Story Map'), ('field-kit.html', 'Field Kit'), ('about.html', 'About')]
 
 def page(fname, title, desc, body, extra_head='', extra_js=''):
     links = ''.join(f'<a href="{h}"{" aria-current=\"page\"" if h == fname else ""}>{t}</a>' for h, t in NAV)
@@ -58,7 +58,7 @@ def page(fname, title, desc, body, extra_head='', extra_js=''):
       </div>
       <div>
         <h2>Explore</h2>
-        <ul><li><a href="services.html">Services</a></li><li><a href="gallery.html">Map Gallery</a></li><li><a href="shop.html">Map Shop</a></li><li><a href="map-lab.html">Map Lab</a></li><li><a href="field-kit.html">Field Kit</a></li></ul>
+        <ul><li><a href="services.html">Services</a></li><li><a href="gallery.html">Map Gallery</a></li><li><a href="shop.html">Map Shop</a></li><li><a href="map-lab.html">Map Lab</a></li><li><a href="field-kit.html">Field Kit</a></li><li><a href="trail-gear.html">Trail Gear</a></li><li><a href="before-you-buy.html">Free Story Map</a></li></ul>
       </div>
       <div>
         <h2>Studio</h2>
@@ -136,6 +136,21 @@ f'''
         </a>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="section--tight" style="padding-top:0">
+  <div class="wrap">
+    <a class="free-card reveal" href="before-you-buy.html">
+      <img src="assets/storymap/step-score.webp" alt="The free story map's weighted soil suitability map of the Smith River plain" width="1280" height="744" loading="lazy">
+      <div class="free-body">
+        <span class="free-badge">Free</span>
+        <p class="eyebrow">Before You Buy · Story map</p>
+        <h3>Read the ground before you buy it.</h3>
+        <p>A free, step-by-step soil walkthrough for land buyers. Move the sliders and watch the map change.</p>
+        <span class="go">See the free story map →</span>
+      </div>
+    </a>
   </div>
 </section>
 
@@ -459,7 +474,8 @@ page('map-lab.html', 'Map Lab — Coastline Map Labs',
   <p class="small muted" style="margin-top:var(--space-3)">Basemap © OpenFreeMap, © OpenStreetMap contributors. Place search by OpenStreetMap Nominatim.</p>
 
   <div class="section-head reveal" style="margin-top:var(--space-20)"><p class="eyebrow">In the lab</p><h2>More tools on the way</h2></div>
-  <div class="tools">
+  <div class="tools tools--four">
+    <article class="tool reveal"><span class="status live">Live · Free</span><h3>Before You Buy story map</h3><p>A free soil walkthrough for land buyers, with a map you can change.</p><a class="small" href="before-you-buy.html">Try it free &rarr;</a></article>
     <article class="tool reveal"><span class="status live">Live</span><h3>Parcel pin &amp; report request</h3><p>Mark a property and send its coordinates with your request.</p></article>
     <article class="tool reveal"><span class="status dev">In development</span><h3>Soil suitability explorer</h3><p>See soil ratings for building, septic, and gardening across Del Norte County.</p></article>
     <article class="tool reveal"><span class="status dev">In development</span><h3>North Coast trails &amp; parks</h3><p>Trailheads, distances, and elevation profiles for redwood and coastal trails.</p></article>
@@ -482,6 +498,8 @@ f'''
 </div></section>
 <section class="section"><div class="wrap--narrow">
   <p class="disclosure reveal"><span><strong>Affiliate disclosure.</strong> Some links below are affiliate links. If you buy through them, I may earn a small commission at no extra cost to you. Free tools are listed because they’re good, not because they pay.</span></p>
+
+  <p class="reveal" style="margin-top:var(--space-6)">Heading outside? See my <a href="trail-gear.html">Trail Gear picks</a> for hiking and field mapping.</p>
 
   <div class="section-head reveal" style="margin-top:var(--space-16);margin-bottom:var(--space-4)"><h2>Software</h2></div>
   <div class="kit">
@@ -507,6 +525,128 @@ f'''
   </div>
 </div></section>
 ''')
+
+
+# ------------------------------------------------------------------ TRAIL GEAR
+# Amazon buttons use the "affiliate" keys in config.js. Until you are approved
+# by Amazon, they open a plain Amazon search (no commission). After approval,
+# paste each product's SiteStripe link into config.js. Do not show prices here:
+# Amazon's rules don't allow hand-typed prices on your site.
+def gear(aff, tag, name, why, tip):
+    return (f'<div class="kit-item reveal"><span class="tag">{tag}</span><div><h3>{name}</h3><p>{why}</p>'
+            f'<p class="gear-tip"><strong>Mapmaker tip:</strong> {tip}</p></div>'
+            f'<a class="btn btn-ghost" data-aff="{aff}" href="#" target="_blank" rel="sponsored noopener noreferrer">See on Amazon ↗</a></div>')
+
+def gear_group(title, intro, items):
+    return (f'  <div class="section-head reveal" style="margin-top:var(--space-16);margin-bottom:var(--space-4)"><h2>{title}</h2><p class="muted">{intro}</p></div>\n'
+            f'  <div class="kit">\n    ' + '\n    '.join(items) + '\n  </div>\n')
+
+TRAIL_GEAR = (
+'<section class="page-hero night"><div class="wrap">\n'
+'  <p class="eyebrow">Trail Gear · As seen on my TikTok</p>\n'
+'  <h1>What a mapmaker carries on the trail.</h1>\n'
+'  <p class="lede">The navigation and trail gear I use when I hike and map redwood and coastal trails. Short, honest notes on why each one is in my pack.</p>\n'
+'</div></section>\n'
+'<section class="section"><div class="wrap--narrow">\n'
+'  <p class="disclosure reveal"><span><strong>Affiliate disclosure.</strong> As an Amazon Associate I earn from qualifying purchases. If you buy through these links, I may earn a small commission at no extra cost to you.</span></p>\n'
++ gear_group('Find your way', 'A phone is great until the battery or signal quits. These are my backups.', [
+    gear('amz-compass', 'Compass', 'Suunto A-10 baseplate compass', 'A simple, reliable compass made for reading paper maps.', 'Set it on a printed trail map and turn both until north lines up. That one move makes a map make sense.'),
+    gear('amz-etrex-se', 'GPS', 'Garmin eTrex SE handheld GPS', 'A budget GPS that runs on two AA batteries for days.', 'Record your hike as a track, then open it in QGIS and turn it into your own trail map.'),
+    gear('amz-etrex-32x', 'GPS', 'Garmin eTrex 32x handheld GPS', 'Adds topo maps, an electronic compass, and an altimeter.', 'The altimeter lets you build an elevation profile of your hike.'),
+    gear('amz-inreach', 'Safety', 'Garmin inReach Mini 2', 'Satellite texting and SOS where there is no cell signal. Needs a subscription.', 'Worth it if you hike alone or go off-trail in the backcountry.'),
+])
++ gear_group('Light and warmth', 'Days are short on the North Coast in winter, and the fog rolls in fast.', [
+    gear('amz-headlamp', 'Light', 'Rechargeable motion-sensor headlamp (2-pack)', 'Hands-free light that charges by USB. A best seller in camping gear.', 'Use red-light mode to read a map at night without ruining your night vision.'),
+    gear('amz-handwarmers', 'Warmth', 'Rechargeable hand warmers (2-pack)', 'Pocket warmers you can recharge instead of throwing away.', 'Cold fingers can’t work a GPS or a compass. Keep these in your jacket pocket.'),
+])
++ gear_group('Water and safety', 'The small things that turn a bad day into an okay one.', [
+    gear('amz-lifestraw', 'Water', 'LifeStraw personal water filter', 'Drink straight from a stream. Light enough to forget it’s there.', 'Mark creeks and springs as waypoints so you know where you can refill next time.'),
+    gear('amz-sawyer', 'Water', 'Sawyer Mini water filter', 'A 2-ounce filter that screws onto a bottle or pouch.', 'Good for longer days when you need to filter more water.'),
+    gear('amz-firstaid', 'Safety', 'Compact waterproof first aid kit', 'A small, organized kit for blisters, cuts, and scrapes.', 'Pack it at the top of your bag, not the bottom.'),
+])
++ gear_group('On the trail', 'For steep, muddy, rooty trails like the ones in the redwoods.', [
+    gear('amz-poles', 'Support', 'Collapsible trekking poles with cork grips', 'Take strain off your knees on the way down.', 'A pole held upright next to a feature makes a handy scale in your field photos.'),
+])
++ '  <div class="band reveal" style="margin-top:var(--space-16)">\n'
+  '    <div><h2>Want a map of your favorite trail?</h2><p class="muted" style="margin-top:var(--space-2)">I make custom trail maps with trailheads, loops, and nearby routes.</p></div>\n'
+  '    <a class="btn btn-primary" href="gallery.html">See trail map samples</a>\n'
+  '  </div>\n'
+  '  <p class="small muted" style="margin-top:var(--space-6)">Also see my <a href="field-kit.html">Field Kit</a> for GIS software, laptops, and books.</p>\n'
+  '</div></section>\n'
+)
+page('trail-gear.html', 'Trail Gear — What a mapmaker carries — Coastline Map Labs',
+     'The trail and navigation gear Rob Montini carries for hiking and field mapping on the North Coast, with Amazon links.',
+     TRAIL_GEAR)
+
+# ------------------------------------------------------------------ FREE STORY MAP
+STORY_URL = 'https://gis-made-simple-soils.pplx.app'
+SHOTS = [
+    ('step-ph', 'Step 3: Is the soil sour? A pH map of the Smith River plain.', 768, 744),
+    ('step-score', 'Step 6: Move the sliders and the suitability map recalculates.', 1280, 744),
+    ('step-parcel', 'Step 7: Clip to a parcel and count the good acres.', 1280, 744),
+    ('checklist', 'A printable soil checklist for your next property visit.', 1280, 644),
+]
+shots_html = ''.join(
+    f'<figure class="sm-shot reveal"><button class="gimg" type="button" data-zoom="assets/storymap/{n}.webp" data-caption="{c}" aria-label="View larger: {c}">'
+    f'<img src="assets/storymap/{n}.webp" alt="{c}" width="{w}" height="{h}" loading="lazy"><span class="zoom-hint">View larger</span></button>'
+    f'<figcaption>{c}</figcaption></figure>'
+    for n, c, w, h in SHOTS)
+
+def night_step(title, sub):
+    return f'<li><div><strong>{title}</strong><span style="color:var(--color-night-muted)">{sub}</span></div></li>'
+
+BYB = (
+f'''<section class="page-hero night"><div class="wrap">
+  <p class="eyebrow">Before You Buy · Free story map</p>
+  <h1>Read the ground before you buy it.</h1>
+  <p class="lede">A listing that says “great soil” doesn’t tell you whether grass will grow for your animals. This free story map walks you through a full soil check, one small step at a time.</p>
+  <div class="btn-row">
+    <a class="btn btn-primary btn-free" href="{STORY_URL}" target="_blank" rel="noopener">Try the free story map ↗</a>
+    <a class="btn btn-ghost" href="#inside">See what’s inside</a>
+  </div>
+  <p class="small" style="color:var(--color-night-muted)">Free · No sign-up · Works on phone and computer</p>
+</div></section>
+
+<section class="section" id="inside"><div class="wrap">
+  <div class="section-head reveal"><p class="eyebrow">What’s inside</p><h2>Real USDA soil data, explained in plain English.</h2><p class="muted">The example is the Smith River plain in Del Norte County, with a made-up 39-acre parcel. Tap any picture to see it larger.</p></div>
+  <div class="sm-grid">{shots_html}</div>
+  <div class="btn-row reveal" style="margin-top:var(--space-10);justify-content:center">
+    <a class="btn btn-primary btn-free" href="{STORY_URL}" target="_blank" rel="noopener">Open the free story map ↗</a>
+  </div>
+</div></section>
+
+<section class="section night"><div class="wrap split">
+  <div class="reveal">
+    <p class="eyebrow">How it works</p>
+    <h2 style="margin-block:var(--space-3) var(--space-4)">Six questions every land buyer should ask the soil.</h2>
+    <p class="lede">Each step shows one layer on the map, so you only learn one thing at a time.</p>
+  </div>
+  <ol class="steps reveal" style="color:var(--color-night-text)">
+    {night_step('Is the soil sour?', 'Soil pH, and when lime can fix it.')}
+    {night_step('Do roots sit in water?', 'Drainage classes and wet spots.')}
+    {night_step('Will it last through summer?', 'How much water the soil holds.')}
+    {night_step('Is it too steep or too low?', 'Slope, flood zones, and wetlands.')}
+    {night_step('How does it score overall?', 'A weighted map you can change yourself.')}
+    {night_step('How many good acres?', 'Clip to the parcel and add it up.')}
+  </ol>
+</div></section>
+
+<section class="section--tight"><div class="wrap">
+  <div class="band reveal">
+    <div><h2>Looking at a real property?</h2><p class="muted" style="margin-top:var(--space-2)">The story map is an example. I can run the same check on the land you’re thinking of buying.</p></div>
+    <div class="btn-row"><a class="btn btn-primary" data-buy="soil-buyer-report" href="contact.html?item=soil-buyer-report">Get a Land Buyer Report</a><a class="btn btn-ghost" href="map-lab.html">Pin your parcel</a></div>
+  </div>
+  <p class="small muted" style="margin-top:var(--space-4)">Educational example only. Soil survey data is mapped at a broad scale and isn’t a site-specific test.</p>
+</div></section>
+<dialog id="lightbox" class="lightbox" aria-label="Full-size picture">
+  <form method="dialog"><button class="lb-close" aria-label="Close">&times;</button></form>
+  <img alt="" id="lb-img">
+  <p id="lb-cap"></p>
+</dialog>
+''')
+page('before-you-buy.html', 'Before You Buy — Free soil story map for land buyers — Coastline Map Labs',
+     'Read the ground before you buy it. A free, interactive soil suitability story map for homestead land buyers, built with free USDA data and QGIS.',
+     BYB)
 
 # ------------------------------------------------------------------ ABOUT
 page('about.html', 'About Rob Montini — Coastline Map Labs',
